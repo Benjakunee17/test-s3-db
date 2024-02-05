@@ -5,11 +5,11 @@
  */
 
 resource "aws_db_subnet_group" "main" {
-  name       = "${var.service_name}-${var.system_name}-${terraform.workspace}-aurora-rds-subnet-group"
+  name       = "${var.service_name}-${var.system_name}-${terraform.workspace}-aurora-rds-subnet-group-test"
   subnet_ids = [var.subnet_secure_b, var.subnet_secure_c]
 
   tags = {
-    Name = "${var.service_name}-${var.system_name}-${terraform.workspace}-aurora-subnet-group-website-laos"
+    Name = "${var.service_name}-${var.system_name}-${terraform.workspace}-aurora-subnet-group-test-wts"
   }
 }
 
@@ -19,7 +19,7 @@ resource "aws_db_subnet_group" "main" {
  * Purpose : สร้าง parameter group สำหรับ aurora DB
  */
 resource "aws_rds_cluster_parameter_group" "main" {
-  name        = "${var.service_name}-${var.system_name}-${terraform.workspace}-aurora-rds-parameter-group"
+  name        = "${var.service_name}-${var.system_name}-${terraform.workspace}-aurora-rds-parameter-group-test"
   description = "RDS aurora default cluster parameter group for exta"
   family      = "aurora-mysql8.0"
 
@@ -51,7 +51,7 @@ resource "aws_rds_cluster_parameter_group" "main" {
  * Purpose : สร้าง aurora DB
  */
 resource "aws_rds_cluster" "main" {
-  cluster_identifier              = "${var.service_name}-${var.system_name}-${terraform.workspace}-aurora-rds"
+  cluster_identifier              = "${var.service_name}-${var.system_name}-${terraform.workspace}-aurora-rds-test"
   engine                          = "aurora-mysql"
   engine_version                  = var.aurora_version
   master_username                 = var.aurora_master_username
@@ -76,7 +76,7 @@ resource "aws_rds_cluster" "main" {
  */
 resource "aws_rds_cluster_instance" "cluster_instances" {
   count                        = 1
-  identifier                   = "${var.service_name}-${var.system_name}-${terraform.workspace}-aurora-rds-instance"
+  identifier                   = "${var.service_name}-${var.system_name}-${terraform.workspace}-aurora-rds-instance-test"
   cluster_identifier           = aws_rds_cluster.main.id
   instance_class               = var.aurora_instance_type
   engine                       = aws_rds_cluster.main.engine
@@ -92,7 +92,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
 #  }
 
   tags = {
-    Name = "${var.service_name}-${var.system_name}-${terraform.workspace}-aurora-rds-website-laos"
+    Name = "${var.service_name}-${var.system_name}-${terraform.workspace}-aurora-rds-test"
     DailyBackup = "Daily1"
   }
 }

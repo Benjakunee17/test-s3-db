@@ -24,8 +24,7 @@ variable "subnet_nonexpose_c" {}
 variable "subnet_secure_b" {}
 variable "subnet_secure_c" {}
 
-variable "ec2_instance_image" {}
-variable "ec2_instance_type" {}
+
 
 variable "aurora_version" { default = "8.0.mysql_aurora.3.02.0" }
 variable "aurora_instance_type" { default = "db.t4g.medium" }
@@ -34,5 +33,4 @@ variable "aurora_master_password" {}
 variable "aurora_performance_insights_enabled" { default = "false" }
 variable "aurora_ca_cert" {}
 
-variable "certificate_arn" {}
-variable "ssl_policy" {}
+

@@ -19,12 +19,12 @@
  */
 terraform {
   backend "s3" {
-    bucket  = "new-webcpalaos-prd-terraform-state-bucket"
-    key     = "terraform/prd/terraform.tfstate"
+    bucket  = "new-cpa-dev-terraform-state-bucket"
+    key     = "terraform/dev/terraform.tfstate"
     region  = "ap-southeast-1"
     acl     = "bucket-owner-full-control"
     encrypt = true
-    profile = "cplwebsiteprd"
+    profile = "awscpadev"
   }
 }
 
